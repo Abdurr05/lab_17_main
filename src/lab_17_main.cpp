@@ -7,11 +7,20 @@
 #include "oled-wing-adafruit.h"
 #include "LIS3DH.h"
 #include <blynk.h>
-
+#include "MQTT.h"
 void setup();
 void loop();
 #line 5 "c:/Users/Abdurrahman/Documents/labs/lab_17/lab_17_main/src/lab_17_main.ino"
 SYSTEM_THREAD(ENABLED);
+
+void callback(char* topic, byte* payload, unsigned int length);
+MQTT client("lab.thewcl.com", 1883, callback);
+void callback(char* topic, byte* payload, unsigned int length) {
+  char p[length + 1];
+  memcpy(p, payload, length);
+  p[length] = NULL;
+  
+}
 
 OledWingAdafruit display;
 LIS3DHSPI accel(SPI, D5, WKP);
@@ -250,6 +259,11 @@ void setup() {
 
 // loop() runs over and over again, as quickly as it can execute.
 void loop() {
+  if (client.isConnected()) {
+    client.loop();
+  } else {
+    client.connect(System.deviceID());
+  }
   Blynk.run();
   display.loop();
   
@@ -399,6 +413,15 @@ if(!newGame){
     y = 10;
     movingX = 0;
     movingY = 0;
+    if(maze == 1){
+      client.publish("The Maze","abdurrahman just completed the easy maze");
+    }
+    if(maze == 2){
+      client.publish("The Maze","abdurrahman just completed the medium maze");
+    }
+    if(maze == 3){
+      client.publish("The Maze","abdurrahman just completed the hard maze");
+    }
   }
   // The core of your code will likely live here.
 }
