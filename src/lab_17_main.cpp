@@ -8,6 +8,7 @@
 #include "LIS3DH.h"
 #include <blynk.h>
 #include "MQTT.h"
+void myThread1(void *args);
 void setup();
 void loop();
 #line 5 "c:/Users/Abdurrahman/Documents/labs/lab_17/lab_17_main/src/lab_17_main.ino"
@@ -28,6 +29,21 @@ int movingX;
 int movingY;
 const unsigned long PRINT_SAMPLE_PERIOD = 100;
 unsigned long lastPrintSample = 0;
+volatile bool startGame;
+volatile int Timer = 0;
+
+os_thread_t thread1;
+
+void myThread1(void *args) {
+  while (1) {
+    if(startGame){
+      Timer = Timer+1;
+      delay(1000);
+    } else{
+      Timer = 0;
+    }
+  }
+}
 
 const uint16_t red = D6;
 const uint16_t green = D7;
@@ -240,6 +256,8 @@ void setup() {
 
   Blynk.begin("KFgwPygKZdZF5I_kkJtpz3rqrdW55Z0J", IPAddress(167, 172, 234, 162), 9090);
 
+  os_thread_create(&thread1, "anyName", OS_THREAD_PRIORITY_DEFAULT, myThread1, NULL, 1024);
+
   LIS3DHConfig config;
 	config.setPositionInterrupt(16);
 	bool setupSuccess = accel.setup(config);
@@ -315,6 +333,7 @@ void loop() {
     }
   }
 if(!newGame){
+  startGame = true;
   if(!chooseJolystick){
     if (millis() - lastPrintSample >= PRINT_SAMPLE_PERIOD){
       lastPrintSample = millis();
@@ -376,6 +395,20 @@ if(!newGame){
 	display.display();
   delay(200);
   if(x == 123){
+    String timeTaken = String(Timer)+"s";
+    startGame = false;
+    if(maze == 1){
+      client.publish("The Maze","abdurrahman just completed the easy maze in");
+      client.publish("The Maze",timeTaken);
+    }
+    if(maze == 2){
+      client.publish("The Maze","abdurrahman just completed the medium maze in");
+      client.publish("The Maze",timeTaken);
+    }
+    if(maze == 3){
+      client.publish("The Maze","abdurrahman just completed the hard maze in");
+      client.publish("The Maze",timeTaken);
+    }
     display.clearDisplay();
 		display.setTextSize(1);
 		display.setTextColor(WHITE);
@@ -413,15 +446,6 @@ if(!newGame){
     y = 10;
     movingX = 0;
     movingY = 0;
-    if(maze == 1){
-      client.publish("The Maze","abdurrahman just completed the easy maze");
-    }
-    if(maze == 2){
-      client.publish("The Maze","abdurrahman just completed the medium maze");
-    }
-    if(maze == 3){
-      client.publish("The Maze","abdurrahman just completed the hard maze");
-    }
   }
   // The core of your code will likely live here.
 }
