@@ -1078,7 +1078,7 @@ void BlynkApi<Proto>::processCmd(const void* buff, size_t len)
    d45b6:	f002 f9c2 	bl	d693e <BlynkWidgetWrite>
     } break;
    d45ba:	e7ab      	b.n	d4514 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE10processCmdEPKvj+0x19c>
-   d45bc:	000d93b1 	.word	0x000d93b1
+   d45bc:	000d93b0 	.word	0x000d93b0
    d45c0:	000d921f 	.word	0x000d921f
    d45c4:	000d9227 	.word	0x000d9227
    d45c8:	000d922a 	.word	0x000d922a
@@ -2327,7 +2327,7 @@ void loop() {
    d4e8a:	4978      	ldr	r1, [pc, #480]	; (d506c <loop+0x23c>)
    d4e8c:	4875      	ldr	r0, [pc, #468]	; (d5064 <loop+0x234>)
    d4e8e:	f002 ff78 	bl	d7d82 <_ZN5Print7printlnEPKc>
-    display.println("Press B to play with the Jolystick");
+    display.println("Press B to play with the Joystick");
    d4e92:	4977      	ldr	r1, [pc, #476]	; (d5070 <loop+0x240>)
    d4e94:	4873      	ldr	r0, [pc, #460]	; (d5064 <loop+0x234>)
    d4e96:	f002 ff74 	bl	d7d82 <_ZN5Print7printlnEPKc>
@@ -2596,10 +2596,10 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
    d5094:	2003e638 	.word	0x2003e638
    d5098:	2003e640 	.word	0x2003e640
    d509c:	2003e53c 	.word	0x2003e53c
-   d50a0:	000d9310 	.word	0x000d9310
+   d50a0:	000d930f 	.word	0x000d930f
    d50a4:	2003e460 	.word	0x2003e460
    d50a8:	2003e45c 	.word	0x2003e45c
-   d50ac:	000d9319 	.word	0x000d9319
+   d50ac:	000d9318 	.word	0x000d9318
   if(movingY < 0){
    d50b0:	683b      	ldr	r3, [r7, #0]
    d50b2:	2b00      	cmp	r3, #0
@@ -2941,12 +2941,12 @@ class StringSumHelper : public String
    d5368:	000d955b 	.word	0x000d955b
    d536c:	000d967b 	.word	0x000d967b
    d5370:	2003e4fc 	.word	0x2003e4fc
-   d5374:	000d9323 	.word	0x000d9323
-   d5378:	000d9325 	.word	0x000d9325
-   d537c:	000d9351 	.word	0x000d9351
+   d5374:	000d9322 	.word	0x000d9322
+   d5378:	000d9324 	.word	0x000d9324
+   d537c:	000d9350 	.word	0x000d9350
    d5380:	2003e568 	.word	0x2003e568
-   d5384:	000d935a 	.word	0x000d935a
-   d5388:	000d9388 	.word	0x000d9388
+   d5384:	000d9359 	.word	0x000d9359
+   d5388:	000d9387 	.word	0x000d9387
    d538c:	000d983b 	.word	0x000d983b
 
 000d5390 <_ZN12Adafruit_GFX9writeLineEsssst>:
@@ -13581,17 +13581,17 @@ TwoWire& __fetch_global_Wire()
    d92d4:	69772079 74206874 61206568 6c656363     y with the accel
    d92e4:	6d6f7265 72657465 65725000 42207373     erometer.Press B
    d92f4:	206f7420 79616c70 74697720 68742068      to play with th
-   d9304:	6f4a2065 7473796c 006b6369 252c6425     e Jolystick.%d,%
-   d9314:	64252c64 206f6e00 706d6173 7300656c     d,%d.no sample.s
-   d9324:	64626100 61727275 6e616d68 73756a20     .abdurrahman jus
-   d9334:	6f632074 656c706d 20646574 20656874     t completed the 
-   d9344:	79736165 7a616d20 6e692065 65685400     easy maze in.The
-   d9354:	7a614d20 62610065 72727564 616d6861      Maze.abdurrahma
-   d9364:	756a206e 63207473 6c706d6f 64657465     n just completed
-   d9374:	65687420 64656d20 206d7569 657a616d      the medium maze
-   d9384:	006e6920 75646261 68617272 206e616d      in.abdurrahman 
-   d9394:	7473756a 6d6f6320 74656c70 74206465     just completed t
-   d93a4:	68206568 20647261 657a616d 006e6920     he hard maze in.
+   d9304:	6f4a2065 69747379 25006b63 64252c64     e Joystick.%d,%d
+   d9314:	0064252c 73206f6e 6c706d61 00730065     ,%d.no sample.s.
+   d9324:	75646261 68617272 206e616d 7473756a     abdurrahman just
+   d9334:	6d6f6320 74656c70 74206465 65206568      completed the e
+   d9344:	20797361 657a616d 006e6920 20656854     asy maze in.The 
+   d9354:	657a614d 64626100 61727275 6e616d68     Maze.abdurrahman
+   d9364:	73756a20 6f632074 656c706d 20646574      just completed 
+   d9374:	20656874 6964656d 6d206d75 20657a61     the medium maze 
+   d9384:	61006e69 72756462 6d686172 6a206e61     in.abdurrahman j
+   d9394:	20747375 706d6f63 6574656c 68742064     ust completed th
+   d93a4:	61682065 6d206472 20657a61 00006e69     e hard maze in..
 
 000d93b4 <_ZTVN8particle11SPISettingsE>:
 	...
@@ -13602,7 +13602,7 @@ TwoWire& __fetch_global_Wire()
    d93d8:	2d680030 74616562 00353400 66667562     0.h-beat.45.buff
    d93e8:	006e692d 34323031 76656400 72615000     -in.1024.dev.Par
    d93f8:	6c636974 75620065 00646c69 206c754a     ticle.build.Jul 
-   d9408:	32203531 20313230 353a3032 35303a39     15 2021 20:59:05
+   d9408:	32203631 20313230 353a3731 37343a31     16 2021 17:51:47
    d9418:	                                         ...
 
 000d941b <_ZL5maze1>:

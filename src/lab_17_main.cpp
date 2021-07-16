@@ -321,7 +321,7 @@ void loop() {
 		display.setTextColor(WHITE);
 		display.setCursor(0,0);
 		display.println("Press A to play with the accelerometer");
-    display.println("Press B to play with the Jolystick");
+    display.println("Press B to play with the Joystick");
 		display.display();
     if (display.pressedA()) {
       chooseJolystick = false;
