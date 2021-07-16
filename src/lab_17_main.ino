@@ -415,7 +415,7 @@ void loop()
     }
     display.display();
     delay(200);
-    if (x == 123) // if the player finishes the maze it sends a message with the time he spent on the maze 
+    if (x == 123) // if the player finishes the maze it sends a message in mqtt with the time he spent on the maze 
     {
       String timeTaken = String(Timer) + "s";
       startGame = false;
